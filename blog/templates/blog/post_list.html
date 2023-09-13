@@ -15,6 +15,18 @@
 <p style="color: red; background-color: orange;" title="ayuda">Texto en rojo</p><hr>
 <p> Este texto esta <mark>marcado</mark></p>
 
+<div>
+    <h1><a href="/">Django Girls Blog</a></h1>
+</div>
+
+{% for post in posts %}
+    <div>
+        <p> publicado: {{ post.published_date }}</p>
+        <h2><a href="">{{ post.title }}</a></h2>
+        <p>{{ post.text|linebreaksbr }}</p>
+    </div>
+{% endfor %}
+
 <p>Este <strong>texto</strong> esta <em>enfocado</em> </p>
 
 <p>Este <sup>texto</sup> texto <sub>esta</sub> <i>con</i> <b>negritas</b></p>
