@@ -1,103 +1,13 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="es-MX">
-<header>
-<title> Mi primera pagina </title>
-<link rel="stylesheet" type="text/css" href="\Users\dario\Documents\JEF\Proyectos\1. HTML\stylesheet_p2.css">
-<link rel="icon" type="image/x-icon" href="favicon.ico">
-<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-<link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-<link rel="stylesheet" href="{% static 'css/blog.css' %}">
+{% extends 'blog/base.html' %}
 
-</header>
-
-<body>
-<h1> Mi primer título</h1>
-<p>Mi primer parrafo</p>
-<a href="https://steamcommunity.com/app/1454400/discussions/0/3044985412466681100/">Enlace</a><br>
-<img src="https://upload.wikimedia.org/wikipedia/commons/0/04/Labrador_Retriever_%281210559%29.jpg" style="width:300px;" alt="Perro de color marrón">
-<p style="color: red; background-color: orange;" title="ayuda">Texto en rojo</p><hr>
-<p> Este texto esta <mark>marcado</mark></p>
-
-
-
-<div class="page-header">
-    <h1><a href="/">Django Girls Blog</a></h1>
-</div>
-
-<div class="content container">
-    <div class="row">
-        <div class="col-md-8">
-            {% for post in posts %}
-                <div class="post">
-                    <div class="date">
-                        <p>publicado: {{ post.published_date }}</p>
-                    </div>
-						<h2><a href="">{{ post.title }}</a></h2>
-						<p>{{ post.text|linebreaksbr }}</p>
-				</div>
-			{% endfor %}
+{% block content %}
+	{% for post in posts %}
+		<div class="post">
+			<div class="date">
+				{{ post.published_date }}
+			</div>
+			<h2><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h2>
+			<p>{{ post.text|linebreaksbr }}</p>
 		</div>
-	</div>
-</div>
-
-<p>Este <strong>texto</strong> esta <em>enfocado</em> </p>
-
-<p>Este <sup>texto</sup> texto <sub>esta</sub> <i>con</i> <b>negritas</b></p>
-
-<pre style="font-family: sans-serif;text-align: center;">
-	Hola que hace
-	Aquí usando texto preformateado en código
-</pre>
-
-
-
-<blockquote cite="minecraft.net">
-	Con sus nuevos juegos, nuevas actualizaciones y nuevas formas de jugar, ¡únete a una de las comunidades de juegos más grandes y empieza a crear hoy mismo!
-</blockquote>
-
-<p><q>Aaaaaaand we’re off!</q></p>
-
-<a href="https://orteil.dashnet.org/cookieclicker/" alt="galleta" target="_blank">
-	<img src="https://s1.eestatic.com/2020/04/16/cocinillas/recetas/postres/reposteria-galletas-postres_482962222_150389308_1706x960.jpg" style="width: 300px;" title="Enlace a Cookie Clicker">
-</a>
-
-<table id="tabla1">
-	<tr>
-		<th rowspan="2">Titulo 1</th>
-		<th>Titulo 2</th>
-		<th>Titulo 3</th>
-	</tr>
-	<tr>
-		<td>Segundo</td>
-		<td>Tercero</td>
-	</tr>
-	<tr>
-		<td>2Primero</td>
-		<td>2Segundo</td>
-		<td>2Tercero</td>
-	</tr>
-</table>
-
-<table>
-	<tr>
-		<th class="celda" rowspan="2">Titulo 1</th>
-		<th>Titulo 2</th>
-		<th>Titulo 3</th>
-	</tr>
-	<tr>
-		<td>Segundo</td>
-		<td>Tercero</td>
-	</tr>
-	<tr>
-		<td>2Primero</td>
-		<td>2Segundo</td>
-		<td>2Tercero</td>
-	</tr>
-</table>
-
-
-</body>
-
-</html>
+	{% endfor %}
+{% endblock %}
