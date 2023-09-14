@@ -1,10 +1,15 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="es-MX">
-
 <header>
 <title> Mi primera pagina </title>
 <link rel="stylesheet" type="text/css" href="\Users\dario\Documents\JEF\Proyectos\1. HTML\stylesheet_p2.css">
 <link rel="icon" type="image/x-icon" href="favicon.ico">
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+<link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="{% static 'css/blog.css' %}">
+
 </header>
 
 <body>
@@ -15,17 +20,27 @@
 <p style="color: red; background-color: orange;" title="ayuda">Texto en rojo</p><hr>
 <p> Este texto esta <mark>marcado</mark></p>
 
-<div>
+
+
+<div class="page-header">
     <h1><a href="/">Django Girls Blog</a></h1>
 </div>
 
-{% for post in posts %}
-    <div>
-        <p> publicado: {{ post.published_date }}</p>
-        <h2><a href="">{{ post.title }}</a></h2>
-        <p>{{ post.text|linebreaksbr }}</p>
-    </div>
-{% endfor %}
+<div class="content container">
+    <div class="row">
+        <div class="col-md-8">
+            {% for post in posts %}
+                <div class="post">
+                    <div class="date">
+                        <p>publicado: {{ post.published_date }}</p>
+                    </div>
+						<h2><a href="">{{ post.title }}</a></h2>
+						<p>{{ post.text|linebreaksbr }}</p>
+				</div>
+			{% endfor %}
+		</div>
+	</div>
+</div>
 
 <p>Este <strong>texto</strong> esta <em>enfocado</em> </p>
 
